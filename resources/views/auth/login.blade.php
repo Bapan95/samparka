@@ -55,4 +55,14 @@
             </x-primary-button>
         </div>
     </form>
+        <script>
+            // Force reload on back button press for unauthenticated users
+            (function() {
+                window.history.forward();
+                window.onunload = function() {
+                    null;
+                };
+            })
+            ();
+        </script>
 </x-guest-layout>

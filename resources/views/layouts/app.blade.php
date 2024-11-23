@@ -15,23 +15,41 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
-        @include('layouts.navigation')
+        @auth
+            @include('layouts.navigation')
 
-        <header class="bg-white dark:bg-gray-800 shadow mt-12">
-            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 mb-0">
-                {{ $header ?? '' }}
-            </div>
-        </header>
+            <!-- Content for authenticated users -->
+            <header class="bg-white dark:bg-gray-800 shadow mt-12">
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 mb-0">
+                    {{ $header ?? '' }}
+                </div>
+            </header>
 
-        <main class="flex-grow">
-            {{ $slot }}
-        </main>
+            <main class="flex-grow">
+                {{ $slot }}
+            </main>
 
-        <footer class="bg-blue-600 text-white p-2">
-            <div class="container mx-auto text-center">
-                &copy; {{ date('Y') }} Samparka. All Rights Reserved.
-            </div>
-        </footer>
+            <footer class="bg-blue-600 text-white p-2">
+                <div class="container mx-auto text-center">
+                    &copy; {{ date('Y') }} Samparka. All Rights Reserved.
+                </div>
+            </footer>
+        @endauth
+
+        @guest
+            <!-- Content for guests (unauthenticated users) -->
+            <script>
+                alert("You are not authorized to access this information.");
+                window.location.href = "{{ route('login') }}"; // Redirect to the login page
+                // (function() {
+                //     window.history.forward();
+                //     window.onunload = function() {
+                //         window.location.href = "{{ route('login') }}"; // Redirect to the login page
+                //     };
+                // })
+                // ();
+            </script>
+        @endguest
     </div>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
@@ -55,16 +73,7 @@
             });
         });
     </script>
-    <script>
-        // Force reload on back button press
-        // (function() {
-        //     alert("Welcome");
-        //     window.history.forward();
-        //     window.onunload = function() {
-        //         null
-        //     };
-        // })();
-    </script>
+
 </body>
 
 </html>

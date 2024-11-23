@@ -21,17 +21,16 @@ class MembershipController extends Controller
         $query = Memberships::query();
 
         // Apply filters based on the request inputs
-        if ($request->filled('branch') && $request->filled('name')) {
-            $query->where('branch', $request->branch)
-                ->where('name', $request->name);
-        } elseif ($request->filled('branch')) {
+        if ($request->filled('branch')) {
             $query->where('branch', $request->branch);
-        } elseif ($request->filled('name')) {
+        }
+
+        if ($request->filled('name')) {
             $query->where('name', $request->name);
         }
 
-        // Get memberships with Eloquent
-        $memberships = $query->get();
+        // Order by id descending and retrieve results
+        $memberships = $query->orderBy('id', 'desc')->get();
 
         return view('membership.index', compact('memberships', 'branches', 'names'));
     }
@@ -104,6 +103,8 @@ class MembershipController extends Controller
     // Update the specified membership in the database
     public function update(Request $request, Memberships $membership)
     {
+        // print_r($request->all());
+        // die;
         // Validate the request
         $request->validate([
             'branch' => 'required|string|max:255',
@@ -123,9 +124,18 @@ class MembershipController extends Controller
         ]);
         // Handle checkboxes for months (set to null if not present in the request)
         $months = [
-            'january', 'february', 'march', 'april', 'may', 
-            'june', 'july', 'august', 'september', 'october', 
-            'november', 'december'
+            'january',
+            'february',
+            'march',
+            'april',
+            'may',
+            'june',
+            'july',
+            'august',
+            'september',
+            'october',
+            'november',
+            'december'
         ];
         foreach ($months as $month) {
             $request[$month] = $request->has($month) ? $request[$month] : null;

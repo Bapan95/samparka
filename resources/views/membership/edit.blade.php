@@ -103,7 +103,7 @@
                 </div>
 
                 <!-- Other Fields -->
-                @foreach (['front', 'monthly_income', 'levy_rate', 'state_relief_fund', '1 day /half day / 2 day income', 'aid_fago', 'comment'] as $field)
+                @foreach (['front', 'monthly_income', 'levy_rate', 'state_relief_fund', 'one_half_two_day_income', 'aid_fago', 'comment'] as $field)
                     <div class="mb-4">
                         <label class="block text-gray-700 dark:text-gray-200" for="{{ $field }}">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
                         <input type="text" name="{{ $field }}" id="{{ $field }}"
