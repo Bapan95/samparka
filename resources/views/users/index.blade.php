@@ -33,7 +33,7 @@
                         'name' => $user->name,
                         'email' => $user->email,
                         'role' => $user->role,
-                        'actions' => view('users.partials.user-action', ['user' => $user])->render(),
+                        'actions' => view('users.partials.user-action', ['user' => $user]),
                     ];
                 })
                 ->toArray()">

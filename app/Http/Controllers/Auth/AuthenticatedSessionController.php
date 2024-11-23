@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         // Generate a random CAPTCHA string
-        $captcha_code = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 8);
+        $captcha_code = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 4);
 
         // Store the CAPTCHA code in the session
         Session::put('captcha', $captcha_code);
@@ -76,7 +76,8 @@ class AuthenticatedSessionController extends Controller
             // Regenerate the session for security
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard', absolute: false));
+            // return redirect()->intended(route('dashboard', absolute: false));
+            return redirect()->route('dashboard');
         }
 
         // If authentication fails, redirect back with an error
@@ -93,9 +94,12 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login')->withHeaders([
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+            'Pragma' => 'no-cache',
+            'Expires' => 'Fri, 01 Jan 1990 00:00:00 GMT',
+        ]);
     }
 }

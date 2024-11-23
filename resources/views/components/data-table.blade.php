@@ -15,7 +15,7 @@
                     @endforeach
                     @if ($actions)
                         <td class="border px-4 py-2 flex space-x-2">
-                            {{ $actions($row) }}
+                            {{!! $actions($row) !!}}
                         </td>
                     @endif
                 </tr>

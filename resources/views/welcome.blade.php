@@ -42,6 +42,7 @@
             align-items: center;
             justify-content: center;
             padding: 250px 20px 20px;
+            /* Adjusted padding to make space for the banner */
             overflow-y: auto;
         }
 
@@ -49,22 +50,27 @@
             margin-top: 30px;
             display: flex;
             gap: 20px;
+            /* Add space between buttons */
         }
 
         .buttons a {
             padding: 15px 30px;
+            /* Increase padding for larger buttons */
             font-size: 1.2rem;
             color: white;
             text-decoration: none;
             background-color: #007bff;
             border-radius: 5px;
             box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+            /* Add shadow effect */
             transition: background-color 0.3s, transform 0.2s;
+            /* Smooth transitions */
         }
 
         .buttons a:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
+            /* Lift effect on hover */
         }
 
         footer {
@@ -80,7 +86,6 @@
         }
     </style>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
 
@@ -92,6 +97,7 @@
     </header>
 
     <div class="container">
+
         <!-- Login and Register Buttons -->
         <div class="buttons">
             <a href="/login">Log In</a>
@@ -103,23 +109,6 @@
     <footer>
         <p>&copy; 2024 Samparka. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        // Push the initial state into the history
-        history.pushState(null, document.title, location.href);
-
-        window.onpopstate = function (event) {
-            // If the user goes back, push the current state again
-            history.pushState(null, document.title, location.href);
-        };
-
-        // Prevent the default behavior when navigating away
-        window.addEventListener('beforeunload', function (event) {
-            // Show confirmation dialog when trying to leave
-            event.preventDefault();
-            return event.returnValue = ''; // This will trigger the default confirmation dialog
-        });
-    </script>
 
 </body>
 

@@ -34,7 +34,7 @@ class Memberships extends Model
         'november',
         'december',
         'state_relief_fund',
-        'one_day_income',
+        'one_half_two_day_income',
         'aid_fago',
         'comment'
     ];
@@ -65,6 +65,7 @@ class Memberships extends Model
         parent::boot();
 
         static::saving(function ($model) {
+           
             if ($model->date_of_birth) {
                 // Store only the years in the 'age' column
                 $dateOfBirth = Carbon::parse($model->date_of_birth);
