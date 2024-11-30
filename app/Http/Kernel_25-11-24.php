@@ -12,14 +12,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        \App\Http\Middleware\PreventBackHistory::class,
-        \App\Http\Middleware\InactivityLogout::class,
     ];
 
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class, // Register the RoleMiddleware
-        'preventBackHistory' => \App\Http\Middleware\PreventBackHistory::class,
         // other middlewares...
     ];
 

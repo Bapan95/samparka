@@ -1,5 +1,7 @@
-<div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg p-6">
-    <table class="table-auto w-full mb-8 border-collapse mt-4" id="example1">
+<div class="table-responsive">
+
+    <!-- Membership Table -->
+    <table class="table table-bordered table-hover display nowrap margin-top-10 w-p100" id="example1">
         <thead>
             <tr>
                 @foreach($headers as $header)

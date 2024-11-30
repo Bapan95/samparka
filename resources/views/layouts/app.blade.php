@@ -19,11 +19,12 @@
             @include('layouts.navigation')
 
             <!-- Content for authenticated users -->
-            <header class="bg-white dark:bg-gray-800 shadow mt-12">
+            <header class="shadow mt-12 bg-blue-100 sm:bg-blue-200 md:bg-blue-300 lg:bg-blue-400 dark:bg-blue-800">
                 <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 mb-0">
                     {{ $header ?? '' }}
                 </div>
             </header>
+            
 
             <main class="flex-grow">
                 {{ $slot }}
